@@ -1,0 +1,28 @@
+#####################################
+# 2018 ithome ironman
+# Author: James Lu
+# Topic: k8s 不自賞 - Day 24 常見問題與建議 (5)
+# Url: https://ithelp.ithome.com.tw/articles/10193956
+# Licence: MIT
+#####################################
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: err-probe-nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    livenessProbe:
+      httpGet:
+        path: /healthy
+        port: 80
+      initialDelaySeconds: 3
+      periodSeconds: 3
+    readinessProbe:
+      httpGet:
+        path: /healthy
+        port: 80
+      initialDelaySeconds: 3
+      periodSeconds: 3
